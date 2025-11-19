@@ -1,0 +1,37 @@
+<h2>Informations Étudiant</h2>
+<div>
+    <label>Prénom: </label>
+    <input type="text" name="name" [(ngModel)]="etudiant.name" placeholder="name">
+</div>
+<div>
+    <label>Nom: </label>
+    <input type="text" name="lastname" [(ngModel)]="etudiant.lastname" placeholder="lastname">
+</div>
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Éditer Prénom</th>
+      <th>Moyenne</th>
+      <th>Assiduité</th>
+      <th>Bourse</th>
+      <th>Date Inscription</th>
+      <th>Classe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{etudiant.id}}</td>
+      <td>{{etudiant.name | uppercase}}</td>
+      <!--oui on peut creer des pipes personalisée-->
+      <td>{{etudiant.lastname |uppercase}}</td>
+      <td>{{etudiant.average}}</td>
+      <td>{{etudiant.attendance | percent}}</td>
+      <td>{{etudiant.scholarshipAmount | currency:'EUR'}}</td>
+      <td>{{etudiant.enrollmentDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{etudiant.classe || 'N/A'}}</td>
+    </tr>
+  </tbody>
+</table>
