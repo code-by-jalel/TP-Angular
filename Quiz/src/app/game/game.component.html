@@ -1,0 +1,45 @@
+<div class="game-container">
+  <div class="score-info">
+    <h2>Score: {{ score }}</h2>
+    <p>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</p>
+  </div>
+
+  <div class="question-container">
+    <h3>{{ currentQuestion.question }}</h3>
+    
+    <div class="options">
+      <button 
+        *ngFor="let option of currentQuestion.options"
+        [ngClass]="{'selected': selectedAnswer === option, 'disabled': answered}"
+        (click)="onSelectOption(option)"
+        [disabled]="answered">
+        {{ option }}
+      </button>
+    </div>
+
+    <div *ngIf="!answered" class="action">
+      <button (click)="submitAnswer()" [disabled]="selectedAnswer === ''">
+        Submit Answer
+      </button>
+    </div>
+
+    <div *ngIf="answered" class="feedback">
+      <p *ngIf="selectedAnswer === currentQuestion.reponse" class="correct">
+        ✓ Correct! +10 points
+      </p>
+      <p *ngIf="selectedAnswer !== currentQuestion.reponse" class="incorrect">
+        ✗ Incorrect! The correct answer is: {{ currentQuestion.reponse }}
+      </p>
+      
+      <button 
+        *ngIf="!isQuizComplete"
+        (click)="nextQuestion()">
+        Next Question
+      </button>
+      <button 
+        *ngIf="isQuizComplete">
+        Quiz Complete! Final Score: {{ score }}
+      </button>
+    </div>
+  </div>
+</div>

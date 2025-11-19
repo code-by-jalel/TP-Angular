@@ -1,0 +1,12 @@
+<div *ngIf="question" class="question">
+  <h3>{{ question.question }}</h3>
+  <div class="options">
+    <button 
+      *ngFor="let option of question.options"
+      [ngClass]="{'selected': selectedAnswer === option, 'disabled': answered}"
+      (click)="selectOption(option)"
+      [disabled]="answered">
+      {{ option }}
+    </button>
+  </div>
+</div>
