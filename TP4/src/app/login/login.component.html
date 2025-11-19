@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h1>Système de Connexion</h1>
+  
+  <div class="login-form">
+    <input 
+      type="text" 
+      [(ngModel)]="username" 
+      name="username"
+      placeholder="Entrez votre prénom"
+      class="input-field">
+    
+    <button (click)="login()" class="btn-login">Se connecter</button>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="welcome-message">
+    <p>Bienvenue, utilisateur!</p>
+    <button (click)="toggleLogin()" class="btn-logout">Se déconnecter</button>
+  </div>
+
+  <div *ngIf="!isLoggedIn" class="login-hint">
+    <p>Entrez "jalel" pour vous connecter</p>
+  </div>
+</div>

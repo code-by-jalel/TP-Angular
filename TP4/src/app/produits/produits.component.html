@@ -1,0 +1,56 @@
+<div class="produits-container">
+  <h1>Gestion des Produits</h1>
+  
+  <div class="produits-list">
+    <h2>Liste des produits ({{ produits.length }})</h2>
+    
+    <div *ngFor="let produit of produits" class="produit-card">
+      <div class="produit-header">
+        <h3>{{ produit.nom }}</h3>
+        <span class="produit-id">#{{ produit.id }}</span>
+      </div>
+
+      <p class="produit-description">{{ produit.description }}</p>
+
+      <div class="produit-info">
+        <div class="info-item">
+          <span class="label">Prix:</span>
+          <span class="price">{{ produit.prix | currency: 'EUR' }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Stock:</span>
+          <span class="stock-value" [ngStyle]="{ color: getStockColor(produit.stock), fontWeight: 'bold', fontSize: '16px' }">
+            {{ produit.stock }} unités
+          </span>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Statut:</span>
+          <span class="stock-status" [ngStyle]="{ 
+            color: getStockColor(produit.stock),
+            backgroundColor: getStockColor(produit.stock) + '20',
+            padding: '4px 12px',
+            borderRadius: '20px',
+            fontWeight: 'bold',
+            display: 'inline-block'
+          }">
+            {{ getStockStatus(produit.stock) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="produit-actions">
+        <div class="stock-controls">
+          <button (click)="decrementStock(produit.id)" class="btn-control btn-minus">-</button>
+          <span class="stock-display">{{ produit.stock }}</span>
+          <button (click)="incrementStock(produit.id)" class="btn-control btn-plus">+</button>
+        </div>
+
+        <button (click)="buyProduct(produit.id)" class="btn-buy" [disabled]="produit.stock === 0">
+          {{ produit.stock > 0 ? 'Acheter' : 'Rupture' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="articles-container">
+  <h1>Gestionnaire d'Articles</h1>
+  
+  <!-- Formulaire d'ajout d'article -->
+  <div class="add-article-form">
+    <h2>Ajouter un nouvel article</h2>
+    
+    <div class="form-group">
+      <label for="titre">Titre:</label>
+      <input 
+        type="text" 
+        id="titre"
+        [(ngModel)]="nouveauTitre" 
+        name="titre"
+        placeholder="Entrez le titre de l'article"
+        class="input-field">
+    </div>
+
+    <div class="form-group">
+      <label for="contenu">Contenu:</label>
+      <textarea 
+        id="contenu"
+        [(ngModel)]="nouveauContenu" 
+        name="contenu"
+        placeholder="Entrez le contenu de l'article"
+        class="textarea-field"
+        rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="importance">Importance:</label>
+      <select 
+        id="importance"
+        [(ngModel)]="nouvelleImportance" 
+        name="importance"
+        class="select-field">
+        <option value="faible">Faible</option>
+        <option value="moyenne">Moyenne</option>
+        <option value="élevée">Élevée</option>
+      </select>
+    </div>
+
+    <button (click)="addArticle()" class="btn-add">Ajouter l'article</button>
+  </div>
+
+  <!-- Liste des articles -->
+  <div class="articles-list">
+    <h2>Liste des articles ({{ articles.length }})</h2>
+    
+    <div *ngIf="articles.length === 0" class="no-articles">
+      <p>Aucun article disponible. Ajoutez-en un pour commencer!</p>
+    </div>
+
+    <div *ngFor="let article of articles" class="article-card" [ngClass]="'importance-' + article.importance">
+      <div class="article-header">
+        <h3>{{ article.titre }}</h3>
+        <div class="article-badges">
+          <span class="article-id">#{{ article.id }}</span>
+          <span class="importance-badge" [ngClass]="'importance-' + article.importance">
+            {{ article.importance | uppercase }}
+          </span>
+        </div>
+      </div>
+      
+      <p class="article-content">{{ article.contenu }}</p>
+      
+      <button (click)="deleteArticle(article.id)" class="btn-delete">Supprimer</button>
+    </div>
+  </div>
+</div>
