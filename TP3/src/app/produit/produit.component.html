@@ -1,0 +1,29 @@
+<div>
+  <h3>{{ nomProduit }}</h3>
+  
+  <img [src]="imageUrl" alt="Image du produit">
+  
+  <div>
+    <p>Prix: <span>{{ prix | currency:'EUR':'symbol':'1.2-2' }}</span></p>
+  </div>
+  
+  <div>
+    <span *ngIf="enStock; else horsStock">En stock</span>
+    <ng-template #horsStock>
+      <span>Hors stock</span>
+    </ng-template>
+  </div>
+
+  <button 
+    (click)="afficherAlerte()" 
+    [disabled]="!enStock"
+  >
+    Ajouter au panier
+  </button>
+
+  <button 
+    (click)="basculerStock()"
+  >
+    Basculer disponibilité
+  </button>
+</div>

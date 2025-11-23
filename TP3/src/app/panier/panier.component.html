@@ -1,0 +1,26 @@
+<div>
+  <h2>Mon Panier</h2>
+  
+  <div>
+    <p>Nombre d'articles: <strong>{{ nombreArticles }}</strong></p>
+  </div>
+
+
+  
+  <div *ngIf="articlesPanier.length > 0; else panierVide">
+    <h3>Articles dans le panier:</h3>
+    <ul>
+      <li *ngFor="let article of articlesPanier; let i = index">
+        <span>{{ article }}</span>
+        <button (click)="retirerDuPanier(i)">Retirer</button>
+      </li>
+    </ul>
+    <button (click)="viderPanier()">Vider le panier</button>
+  </div>
+
+  <ng-template #panierVide>
+    <div>
+      <p>Votre panier est vide</p>
+    </div>
+  </ng-template>
+</div>
