@@ -10,8 +10,7 @@ interface Produit {
 
 @Component({
   selector: 'app-produits',
-  templateUrl: './produits.component.html',
-  styleUrls: ['./produits.component.css']
+  templateUrl: './produits.component.html'
 })
 export class ProduitsComponent {
   produits: Produit[] = [

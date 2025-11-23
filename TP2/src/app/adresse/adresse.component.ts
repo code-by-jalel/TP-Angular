@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
  styleUrls: ['./adresse.component.css']
 })
 export class AdresseComponent {
- rue = '123 Rue Exemple';
+ rue = '7035';
 } 

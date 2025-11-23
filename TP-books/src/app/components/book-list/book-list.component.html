@@ -1,0 +1,29 @@
+<div *ngIf="books.length === 0; else booksList">
+  <p>Aucun livre disponible</p>
+</div>
+
+<ng-template #booksList>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Catégorie</th>
+        <th>Disponibilité</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.category }}</td>
+        <td>{{ getAvailabilityText(book.isAvailable) }}</td>
+        <td>
+          <button (click)="onEdit(book)">Modifier</button>
+          <button (click)="onDelete(book.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

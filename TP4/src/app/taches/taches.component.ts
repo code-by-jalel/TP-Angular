@@ -10,8 +10,7 @@ interface Tache {
 
 @Component({
   selector: 'app-taches',
-  templateUrl: './taches.component.html',
-  styleUrls: ['./taches.component.css']
+  templateUrl: './taches.component.html'
 })
 export class TachesComponent {
   taches: Tache[] = [

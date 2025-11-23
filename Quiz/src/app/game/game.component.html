@@ -1,13 +1,13 @@
-<div class="game-container">
-  <div class="score-info">
+<div>
+  <div>
     <h2>Score: {{ score }}</h2>
     <p>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</p>
   </div>
 
-  <div class="question-container">
+  <div>
     <h3>{{ currentQuestion.question }}</h3>
     
-    <div class="options">
+    <div>
       <button 
         *ngFor="let option of currentQuestion.options"
         [ngClass]="{'selected': selectedAnswer === option, 'disabled': answered}"
@@ -17,17 +17,17 @@
       </button>
     </div>
 
-    <div *ngIf="!answered" class="action">
+    <div *ngIf="!answered">
       <button (click)="submitAnswer()" [disabled]="selectedAnswer === ''">
         Submit Answer
       </button>
     </div>
 
-    <div *ngIf="answered" class="feedback">
-      <p *ngIf="selectedAnswer === currentQuestion.reponse" class="correct">
+    <div *ngIf="answered">
+      <p *ngIf="selectedAnswer === currentQuestion.reponse">
         ✓ Correct! +10 points
       </p>
-      <p *ngIf="selectedAnswer !== currentQuestion.reponse" class="incorrect">
+      <p *ngIf="selectedAnswer !== currentQuestion.reponse">
         ✗ Incorrect! The correct answer is: {{ currentQuestion.reponse }}
       </p>
       

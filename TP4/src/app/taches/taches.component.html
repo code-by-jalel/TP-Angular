@@ -1,63 +1,52 @@
-<div class="taches-container">
+<div>
   <h1>Gestionnaire de Tâches</h1>
 
-  <!-- Formulaire d'ajout de tâche -->
-  <div class="add-tache-form">
+  <div>
     <h2>Ajouter une nouvelle tâche</h2>
 
-    <div class="form-group">
+    <div>
       <label for="description">Description:</label>
       <input
         type="text"
         id="description"
         [(ngModel)]="nouvelleDescription"
         name="description"
-        placeholder="Entrez la description de la tâche"
-        class="input-field">
+        placeholder="Entrez la description de la tâche">
     </div>
 
-    <div class="form-group">
+    <div>
       <label for="priorite">Priorité:</label>
       <select
         id="priorite"
         [(ngModel)]="nouvellePriorite"
-        name="priorite"
-        class="select-field">
+        name="priorite">
         <option value="basse">Basse</option>
         <option value="moyenne">Moyenne</option>
         <option value="haute">Haute</option>
       </select>
     </div>
 
-    <button (click)="addTache()" class="btn-add">Ajouter la tâche</button>
+    <button (click)="addTache()">Ajouter la tâche</button>
   </div>
 
-  <!-- Liste des tâches -->
-  <div class="taches-list">
+  <div>
     <h2>Mes tâches</h2>
 
-    <!-- Affichage conditionnel avec *ngIf...else -->
     <div *ngIf="taches.length > 0; else pasDeTaches">
-      <!-- Liste des tâches avec ngFor -->
-      <div *ngFor="let tache of taches" class="tache-item" [ngClass]="{ 'tache-complete': tache.statut }">
-        <div class="tache-content">
+      <div *ngFor="let tache of taches" [ngClass]="{ 'tache-complete': tache.statut }">
+        <div>
           <input
             type="checkbox"
             [(ngModel)]="tache.statut"
-            name="statut-{{ tache.id }}"
-            class="tache-checkbox">
+            name="statut-{{ tache.id }}">
 
-          <!-- Description avec strikethrough si complétée -->
           <span
-            class="tache-description"
             [ngClass]="{ 'strikethrough': tache.statut }"
             [ngStyle]="{ color: getPrioriteColor(tache.priorite) }">
             {{ tache.description }}
           </span>
 
-          <!-- Badge de priorité -->
           <span
-            class="priorite-badge"
             [ngStyle]="{ 
               color: getPrioriteColor(tache.priorite),
               borderColor: getPrioriteColor(tache.priorite),
@@ -67,30 +56,28 @@
           </span>
         </div>
 
-        <div class="tache-meta">
-          <span class="tache-date">{{ tache.dateCreation | date: 'dd/MM/yyyy' }}</span>
+        <div>
+          <span>{{ tache.dateCreation | date: 'dd/MM/yyyy' }}</span>
 
-          <div class="tache-actions">
+          <div>
             <button
               (click)="toggleTache(tache.id)"
-              [ngClass]="{ 'btn-complete': tache.statut, 'btn-pending': !tache.statut }"
-              class="btn-toggle">
+              [ngClass]="{ 'btn-complete': tache.statut, 'btn-pending': !tache.statut }">
               {{ tache.statut ? '✓ Complétée' : 'À faire' }}
             </button>
 
-            <button (click)="deleteTache(tache.id)" class="btn-delete">Supprimer</button>
+            <button (click)="deleteTache(tache.id)">Supprimer</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Template alternatif quand il n'y a pas de tâches -->
     <ng-template #pasDeTaches>
-      <div class="no-taches">
-        <div class="empty-icon">📋</div>
+      <div>
+        <div>📋</div>
         <h3>Vous n'avez pas de tâches en cours</h3>
         <p>Créez une nouvelle tâche pour commencer à organiser votre travail!</p>
-        <div class="empty-suggestions">
+        <div>
           <p><strong>Suggestions:</strong></p>
           <ul>
             <li>Planifiez vos tâches quotidiennes</li>

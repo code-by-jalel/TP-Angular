@@ -1,0 +1,126 @@
+<form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+  <h2>{{ book ? 'Modifier le Livre' : 'Ajouter un Nouveau Livre' }}</h2>
+
+  <div>
+    <label for="title">Titre:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      #titleInput="ngModel"
+      [(ngModel)]="formData.title"
+      required
+      minlength="3">
+    <div *ngIf="titleInput.invalid && titleInput.dirty">
+      <span *ngIf="titleInput.errors?.['required']">Le titre est requis</span>
+      <span *ngIf="titleInput.errors?.['minlength']">Le titre doit contenir au moins 3 caractères</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="author">Auteur:</label>
+    <input
+      type="text"
+      id="author"
+      name="author"
+      #authorInput="ngModel"
+      [(ngModel)]="formData.author"
+      required
+      minlength="3">
+    <div *ngIf="authorInput.invalid && authorInput.dirty">
+      <span *ngIf="authorInput.errors?.['required']">L'auteur est requis</span>
+      <span *ngIf="authorInput.errors?.['minlength']">L'auteur doit contenir au moins 3 caractères</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email de l'Éditeur:</label>
+    <input
+      type="email"
+      id="email"
+      name="publisherEmail"
+      #emailInput="ngModel"
+      [(ngModel)]="formData.publisherEmail"
+      required>
+    <div *ngIf="emailInput.invalid && emailInput.dirty">
+      <span *ngIf="emailInput.errors?.['required']">L'email est requis</span>
+      <span *ngIf="emailInput.errors?.['email']">L'email n'est pas valide</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="phone">Téléphone de l'Éditeur (optionnel):</label>
+    <input
+      type="text"
+      id="phone"
+      name="publisherPhone"
+      #phoneInput="ngModel"
+      [(ngModel)]="formData.publisherPhone"
+      pattern="^[0-9]{8}$">
+    <div *ngIf="phoneInput.invalid && phoneInput.dirty">
+      <span *ngIf="phoneInput.errors?.['pattern']">Le téléphone doit contenir 8 chiffres</span>
+    </div>
+  </div>
+
+  <div>
+    <label for="date">Date de Sortie:</label>
+    <input
+      type="date"
+      id="date"
+      name="releaseDate"
+      #dateInput="ngModel"
+      [(ngModel)]="formData.releaseDate"
+      required>
+    <div *ngIf="dateInput.invalid && dateInput.dirty">
+      La date de sortie est requise
+    </div>
+  </div>
+
+  <div>
+    <label for="category">Catégorie:</label>
+    <select
+      id="category"
+      name="category"
+      #categoryInput="ngModel"
+      [(ngModel)]="formData.category"
+      required>
+      <option value="">-- Sélectionnez une catégorie --</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+    <div *ngIf="categoryInput.invalid && categoryInput.dirty">
+      La catégorie est requise
+    </div>
+  </div>
+
+  <div>
+    <label for="stock">Stock (optionnel):</label>
+    <input
+      type="number"
+      id="stock"
+      name="stock"
+      #stockInput="ngModel"
+      [(ngModel)]="formData.stock"
+      min="0">
+    <div *ngIf="stockInput.invalid && stockInput.dirty">
+      Le stock doit être un nombre positif
+    </div>
+  </div>
+
+  <div>
+    <label for="available">
+      <input
+        type="checkbox"
+        id="available"
+        name="isAvailable"
+        [(ngModel)]="formData.isAvailable">
+      Disponible
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!bookForm.valid">
+    {{ book ? 'Mettre à Jour' : 'Ajouter' }}
+  </button>
+  <button type="button" (click)="onCancel()">
+    Annuler
+  </button>
+</form>

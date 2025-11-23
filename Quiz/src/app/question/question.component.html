@@ -1,6 +1,6 @@
-<div *ngIf="question" class="question">
+<div *ngIf="question">
   <h3>{{ question.question }}</h3>
-  <div class="options">
+  <div>
     <button 
       *ngFor="let option of question.options"
       [ngClass]="{'selected': selectedAnswer === option, 'disabled': answered}"

@@ -1,0 +1,33 @@
+<div>
+  <h1>Gestionnaire de Livres</h1>
+  <p>Total: {{ getTotalBooks() }} livre(s)</p>
+
+  <button (click)="onAddBook()">Ajouter un Livre</button>
+
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Rechercher un livre...">
+
+  <label>Trier par: </label>
+  <select [(ngModel)]="sortBy">
+    <option value="none">Aucun</option>
+    <option value="category">Catégorie</option>
+    <option value="availability">Disponibilité</option>
+  </select>
+
+  <div *ngIf="isFormVisible">
+    <app-book-form
+      [book]="selectedBook"
+      [categories]="categories"
+      (saveBook)="onSaveBook($event)"
+      (cancelForm)="onCancelForm()">
+    </app-book-form>
+  </div>
+
+  <app-book-list
+    [books]="getFilteredBooks()"
+    (deleteBook)="onDeleteBook($event)"
+    (editBook)="onEditBook($event)">
+  </app-book-list>
+</div>

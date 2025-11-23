@@ -8,8 +8,7 @@ export interface Question {
 
 @Component({
   selector: 'app-question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  templateUrl: './question.component.html'
 })
 export class QuestionComponent {
 

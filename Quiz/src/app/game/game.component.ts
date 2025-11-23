@@ -8,8 +8,7 @@ export interface Question {
 
 @Component({
   selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  templateUrl: './game.component.html'
 })
 export class GameComponent implements OnInit {
 
