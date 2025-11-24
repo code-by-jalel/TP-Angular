@@ -1,0 +1,10 @@
+<div>
+<h3>{{ nomProduit }}</h3>
+<p>Description du produit...</p>
+</div>
+<button (click)="toggleStock()">
+{{ enStock ? 'Marquer comme Hors Stock' : 'Marquer comme En Stock' }}
+</button>
+<button (click)="ajouterProduit()" [disabled]="!enStock">
+Ajouter au Panier
+</button>
